@@ -1,0 +1,125 @@
+/* ==========================================================================
+   SalesIA Enterprise - Corporate Design System & Custom Animations
+   Colors: Slate (#0f172a), Corporate Blue (#1e3a8a, #2563eb), Cyan (#06b6d4, #0891b2)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --primary-navy: #0f172a;
+  --primary-blue: #1e3a8a;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Glassmorphism subtle */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Pulse animation for active real-time indicators */
+@keyframes realTimeGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(6, 182, 212, 0);
+  }
+}
+
+.realtime-indicator {
+  animation: realTimeGlow 2s infinite ease-in-out;
+}
+
+
+
+
+/* ==========================================================================
+   Ventanas emergentes, tarjetas y detalles de ERP
+   ========================================================================== */
+.modal-overlay { animation: modalFade .15s ease-out; }
+.modal-overlay:not(.hidden) > div { animation: modalPop .2s cubic-bezier(.2, .9, .3, 1.15); }
+
+@keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalPop {
+  from { opacity: 0; transform: translateY(14px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.pick-card { transition: border-color .15s, box-shadow .15s, transform .15s; }
+.pick-card:not(:disabled):hover { transform: translateY(-1px); }
+
+.seg-btn { transition: background-color .12s, color .12s, border-color .12s; }
+
+.kpi-card { transition: box-shadow .15s; }
+.kpi-card:hover { box-shadow: 0 4px 14px rgba(15, 23, 42, .06); }
+
+
+/* ==========================================================================
+   Inicio de sesión, impresión y documentos
+   ========================================================================== */
+@keyframes shake { 0%, 100% { transform: none; } 20% { transform: translateX(-7px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+.shake { animation: shake .4s; }
+@keyframes spin360 { to { transform: rotate(360deg); } }
+.spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin360 .7s linear infinite; display: inline-block; vertical-align: middle; }
+.spinner.dark { border-color: rgba(15,23,42,.2); border-top-color: #0f172a; }
+@keyframes popIn { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+.pop-in { animation: popIn .35s cubic-bezier(.2, 1.4, .4, 1); }
+
+/* Hoja de documento (comprobantes y reportes) */
+.doc-sheet { background: #fff; color: #0f172a; font-size: 12px; line-height: 1.45; }
+.doc-sheet table { border-collapse: collapse; width: 100%; }
+.doc-sheet thead { display: table-header-group; }
+.doc-sheet tr, .doc-sheet .doc-block { break-inside: avoid; }
+
+/* Impresión: solo se imprime la ventana marcada con .print-host */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  html, body { height: auto !important; overflow: visible !important; background: #fff !important; }
+  body[data-print] > *:not(.print-host) { display: none !important; }
+  body[data-print] .print-host { position: static !important; display: block !important; background: none !important; padding: 0 !important; backdrop-filter: none !important; }
+  body[data-print] .print-host > div { max-height: none !important; overflow: visible !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; width: 100% !important; max-width: none !important; background: #fff !important; animation: none !important; }
+  body[data-print] .no-print { display: none !important; }
+  body[data-print] .print-scroll { overflow: visible !important; max-height: none !important; padding: 0 !important; background: #fff !important; }
+  body[data-print] .doc-sheet { box-shadow: none !important; border: 0 !important; margin: 0 !important; max-width: none !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* Informe de seguridad: cada capítulo es una hoja; en pantalla simula páginas y al imprimir cada hoja empieza en página nueva */
+@media screen { .report-page { min-height: 980px; } }
+@media print {
+  body[data-print] #secReportPaper > * { margin-top: 0 !important; }
+  body[data-print] .report-page { min-height: 0 !important; padding: 0 !important; max-width: none !important; }
+  body[data-print] .report-page + .report-page { break-before: page; }
+  body[data-print] .finding-card, body[data-print] .doc-block { break-inside: avoid; }
+}

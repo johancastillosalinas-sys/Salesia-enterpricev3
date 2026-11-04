@@ -1,0 +1,5 @@
+﻿tipo,documento,fecha,cliente_nombre,cliente_tipo_doc,cliente_doc,cliente_segmento,cliente_email,cliente_telefono,vendedor,metodo_pago,sku,producto,categoria,precio,costo,cantidad,descuento_pct,stock_inicial,stock_minimo
+PRODUCTO,,,,,,,,,,,LAP-001,"Laptop Pro 14""",Laptops,3200,2500,,,20,5
+CLIENTE,,,Distribuidora Andina S.A.C.,RUC,20512345678,Pyme,compras@andina.pe,987654321,,,,,,,,,,,
+VENTA,V-0001,2026-01-15 10:30,Distribuidora Andina S.A.C.,RUC,20512345678,Pyme,,,Valeria Quispe,Transferencia,LAP-001,"Laptop Pro 14""",Laptops,3200,2500,2,,,
+COTIZACION,C-0001,2026-01-20 09:00,Distribuidora Andina S.A.C.,RUC,20512345678,,,,Valeria Quispe,,LAP-001,"Laptop Pro 14""",Laptops,3200,,5,10,,

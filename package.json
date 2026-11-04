@@ -1,0 +1,24 @@
+{
+  "name": "salesia-enterprise",
+  "version": "1.0.0",
+  "description": "Sistema Web Empresarial de Gestión de Ventas, Clientes, Productos e Inventario",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "real-time",
+    "fifo-queue",
+    "quotes-sandbox",
+    "localstorage"
+  ],
+  "author": "SalesIA Team",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
+
