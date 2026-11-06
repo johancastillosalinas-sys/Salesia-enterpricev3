@@ -10,15 +10,15 @@
 // Orden de los módulos en el menú. El primero permitido es la pantalla de inicio de cada rol.
 export const ROUTE_ORDER = [
   'dashboard', 'pos', 'billing', 'quotes', 'customers', 'products',
-  'inventory', 'reports', 'history', 'import', 'audit', 'security'
+  'inventory', 'tracking', 'reports', 'history', 'import', 'audit', 'security'
 ];
 
 export const ROLE_ROUTES = {
   ADMINISTRADOR: [...ROUTE_ORDER],
-  GERENTE: ['dashboard', 'billing', 'reports', 'history'],
-  VENDEDOR: ['pos', 'billing', 'quotes', 'customers', 'history'],
+  GERENTE: ['dashboard', 'billing', 'tracking', 'reports', 'history'],
+  VENDEDOR: ['pos', 'billing', 'quotes', 'customers', 'tracking', 'history'],
   ANALISTA: ['dashboard', 'reports'],
-  ALMACEN: ['products', 'inventory', 'reports']
+  ALMACEN: ['products', 'inventory', 'tracking', 'reports']
 };
 
 export function canAccess(role, route) {

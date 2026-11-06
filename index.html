@@ -91,6 +91,10 @@
         <span data-icon="cube" class="shrink-0"></span>
         <span>Inventario</span>
       </button>
+      <button data-nav-target="tracking" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all text-slate-300 hover:bg-slate-900">
+        <span data-icon="pin" class="shrink-0"></span>
+        <span>Monitoreo de envíos</span>
+      </button>
       <div class="pt-4 px-3 pb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Gestión</div>
       <button data-nav-target="reports" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all text-slate-300 hover:bg-slate-900">
         <span data-icon="chart" class="shrink-0"></span>
@@ -622,6 +626,44 @@
         </div>
       </section>
 
+
+      <!-- VISTA: MONITOREO DE ENVÍOS (Logística) — mapa de Perú con simulación en vivo -->
+      <section id="view-tracking" class="view-section hidden space-y-6">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xs px-5 py-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div id="trkKpis" class="grid grid-cols-2 sm:grid-cols-4 gap-x-10 gap-y-3"></div>
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-600"><span class="w-2 h-2 rounded-full bg-emerald-500 realtime-indicator"></span>Simulación en vivo</span>
+            <label for="trkSpeed" class="text-xs text-slate-500">Velocidad</label>
+            <select id="trkSpeed" class="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-700"></select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-6 items-start">
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+            <div class="px-4 pt-4 pb-3 border-b border-slate-100 space-y-3">
+              <div class="flex gap-1 text-xs font-semibold" role="tablist" aria-label="Filtrar envíos">
+                <button type="button" data-trk-tab="active" class="px-3 py-1.5 rounded-lg">En curso</button>
+                <button type="button" data-trk-tab="delivered" class="px-3 py-1.5 rounded-lg">Entregados</button>
+                <button type="button" data-trk-tab="all" class="px-3 py-1.5 rounded-lg">Todos</button>
+              </div>
+              <div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search" data-icon-class="w-4 h-4"></span>
+                <input id="trkSearch" type="search" placeholder="Folio, cliente, producto o ciudad" class="w-full pl-9 pr-3 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-cyan-500"></div>
+            </div>
+            <div id="trkList" class="max-h-[70vh] overflow-y-auto divide-y divide-slate-100"></div>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-[minmax(300px,440px)_minmax(0,1fr)] gap-6 items-start">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+              <div class="px-5 py-3 border-b border-slate-100 flex items-center justify-between">
+                <h4 class="font-bold text-slate-900 text-sm">Mapa de Perú</h4>
+                <span class="text-[11px] text-slate-400">Toca un punto para elegir otro envío</span>
+              </div>
+              <div id="trkMap" class="p-3"></div>
+            </div>
+            <div id="trkDetail" class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden"></div>
+          </div>
+        </div>
+      </section>
       <!-- =====================================================================
            VISTA 7: CLIENTES
            ===================================================================== -->

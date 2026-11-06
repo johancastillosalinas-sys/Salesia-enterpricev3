@@ -12,6 +12,7 @@ export const PAGE_META = {
   customers: { title: 'Clientes', subtitle: 'Directorio y fichas de clientes', icon: 'users' },
   products: { title: 'Productos', subtitle: 'Catálogo, precios y existencias', icon: 'tag' },
   inventory: { title: 'Inventario', subtitle: 'Existencias y movimientos de almacén', icon: 'cube' },
+  tracking: { title: 'Monitoreo de envíos', subtitle: 'Sigue cada venta desde el almacén hasta el cliente', icon: 'pin' },
   reports: { title: 'Reportes', subtitle: 'Indicadores comerciales y exportación', icon: 'chart' },
   import: { title: 'Importar datos', subtitle: 'Carga un archivo CSV y llena todos los módulos', icon: 'upload' },
   security: { title: 'Análisis de seguridad', subtitle: 'Evalúa la seguridad de cualquier proyecto comprimido en ZIP', icon: 'lock' },

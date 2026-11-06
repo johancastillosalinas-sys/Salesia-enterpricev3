@@ -11,6 +11,7 @@ import { DashboardController } from '../modules/dashboard/dashboardController.js
 import { PosController } from '../modules/sales/salesController.js';
 import { QuotesController } from '../modules/quotes/quotesController.js';
 import { InventoryController } from '../modules/inventory/inventoryController.js';
+import { TrackingController } from '../modules/tracking/trackingController.js';
 import { CustomersController } from '../modules/customers/customersController.js';
 import { ProductsController } from '../modules/products/productsController.js';
 import { ReportsController } from '../modules/reports/reportsController.js';
@@ -44,6 +45,7 @@ class Application {
     this.customers = new CustomersController(this);
     this.products = new ProductsController(this);
     this.inventory = new InventoryController(this);
+    this.tracking = new TrackingController(this);
     this.dashboard = new DashboardController(this);
     this.quotes = new QuotesController(this);
     this.pos = new PosController(this);
@@ -68,8 +70,7 @@ class Application {
     CommandPalette.init(this);
     this.bindQuickActions();
     this.bindMobileMenu();
-    this.router.onRouteChange((route) => { if (route === 'import') this.importer.onEnter(); this.updatePageHeader(route); this.renderRoute(route); });
-        this.router.setGuard((route) => {
+    this.router.onRouteChange((route) => { if (route !== 'tracking') this.tracking.stop(); if (route === 'import') this.importer.onEnter(); this.updatePageHeader(route); this.renderRoute(route); });        this.router.setGuard((route) => {
       const allowed = canAccess(this.getCurrentRole(), route);
       if (!allowed) this.showToast('Tu rol no tiene acceso a este módulo.', 'warning');
       return allowed;
@@ -312,6 +313,9 @@ class Application {
         break;
       case 'inventory':
         this.inventory.render();
+        break;
+      case 'tracking':
+        this.tracking.render();
         break;
       case 'customers':
         this.customers.render();
